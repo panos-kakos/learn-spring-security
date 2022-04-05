@@ -7,11 +7,18 @@ import org.springframework.context.annotation.ComponentScan;
 
 import com.baeldung.lss.persistence.InMemoryUserRepository;
 import com.baeldung.lss.persistence.UserRepository;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 @SpringBootApplication
 @ComponentScan("com.baeldung.lss.web")
-public class LssApp6 { 
-    
+public class LssApp6 {
+
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
+
     @Bean
     public UserRepository userRepository() {
         return new InMemoryUserRepository();
